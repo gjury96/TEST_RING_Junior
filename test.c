@@ -9,25 +9,26 @@ int main (int argc, char **argv)
 { 
   gen_crc_table();
 
+    if (argc == 1) {
+		  printf("-h help\n");
+	  }
+
  	if (argc < 5 || argc > 6) {
     if (strcmp(argv[1], "-h") == 0) {
-		  puts("Порядок параметров: ключ, место входного файла, место выходного файлв, место ключа шифрования");
-      puts("-d шифровать");
-      puts("-e дешивровать");
-      return 2;
+		  printf("Порядок параметров: ключ, место входного файла, место выходного файлв, место ключа шифрования");
+      printf("-d шифровать");
+      printf("-e дешивровать");
 	  }
      else {
-		  puts("Неверное количество параметров");
-      return 1;
+		  printf("Неверное количество параметров");
      }
 	}
 
   if (strcmp(argv[1], "-h") == 0)
   {
-		  puts("Порядок параметров: ключ, место входного файла, место выходного файлв, место ключа шифрования\n");
-      puts("-d шифровать\n");
-      puts("-e дешивровать");
-      return 2;
+		  printf("Порядок параметров: ключ, место входного файла, место выходного файлв, место ключа шифрования\n");
+      printf("-d шифровать\n");
+      printf("-e дешивровать");
 	}
 //--------------------encodind
   else if (strcmp(argv[1], "-e") == 0)
@@ -35,20 +36,18 @@ int main (int argc, char **argv)
 		  f1 = fopen(argv[2], "r");
       f2 = fopen(argv[3], "w");
       f3 = fopen(argv[4], "r");
+
 		  if (f1 == NULL) 
       {
 			    printf("Неверный адресс файла %s\n", argv[2]);
-          return 3;
       }
       else if (f2 == NULL)
       {
           printf("Неверный адресс файла %s\n", argv[3]);
-          return 4;
       }
           else if (f3 == NULL)
       {
           printf("Неверный адресс файла %s\n", argv[3]);
-          return 4;
       }
      int Leg = 16;
 
@@ -96,17 +95,14 @@ struct AES_ctx ctx;
 		  if (f1 == NULL) 
       {
 			    printf("Неверный адресс файла %s\n", argv[2]);
-          return 3;
       }
       else if (f2 == NULL)
       {
           printf("Неверный адресс файла %s\n", argv[3]);
-          return 4;
       }
             else if (f3 == NULL)
       {
           printf("Неверный адресс файла %s\n", argv[3]);
-          return 4;
       }
     for (int i = 0; i < 16; i++)
     fscanf(f1, "%x", &datad[i]);
