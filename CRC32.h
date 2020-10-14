@@ -1,4 +1,9 @@
-#include "global.h"
+#include <stdint.h>
+
+#define POLYNOMIAL 0x04c11db7L      
+#define BUFFER_LEN       4096L   
+
+uint32_t  crc_table[256]; 
 
 void gen_crc_table(void);
 

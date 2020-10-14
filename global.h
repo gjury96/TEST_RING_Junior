@@ -3,10 +3,6 @@
 #include <stdint.h>
 #include "aes.h"
 
-#define POLYNOMIAL 0x04c11db7L      
-#define BUFFER_LEN       4096L   
-
-uint32_t  crc_table[256]; 
 uint8_t datae[] = { };
 uint8_t datad[] = { };
 uint8_t out[] = { };
@@ -14,6 +10,6 @@ uint8_t str[100];
 uint8_t key[32];
 uint8_t size;
 FILE *f1, *f2, *f3;
-uint32_t      crc32;           
+uint32_t crc32;           
 
   
