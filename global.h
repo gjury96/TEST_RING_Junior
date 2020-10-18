@@ -3,7 +3,7 @@
 #include <stdint.h>
 #include "aes.h"
 
-uint8_t datae[] = { };
+
 uint8_t datad[] = { };
 uint8_t out[] = { };
 uint8_t str[100];
