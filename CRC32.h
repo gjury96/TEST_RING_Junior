@@ -1,5 +1,5 @@
 #include <stdint.h>
-#include <_stdio.h>
+#include <stdio.h>
 
 #define POLYNOMIAL 0x04c11db7L      
 #define BUFFER_LEN       4096L   
