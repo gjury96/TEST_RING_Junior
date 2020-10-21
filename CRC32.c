@@ -1,4 +1,5 @@
 #include "CRC32.h"
+#include <stdio.h>
 
 void gen_crc_table(void)
 {
@@ -32,3 +33,14 @@ uint32_t  update_crc(uint32_t crc_accum, uint8_t  *data_blk_ptr, uint32_t  data_
 
    return crc_accum;
 }
+
+long int filesize( FILE *fp )
+  {
+    long int save_pos, size_of_file;
+ 
+    save_pos = ftell( fp );
+    fseek( fp, 0L, SEEK_END );
+    size_of_file = ftell( fp );
+    fseek( fp, save_pos, SEEK_SET );
+    return( size_of_file );
+  }
