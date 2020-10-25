@@ -58,12 +58,14 @@ int main (int argc, char **argv)
       printf("Invalid file address %s\n", argv[4]);
       return -1;
     }
-      
-    uint8_t datae[Siz_e];
+    uint8_t *datae;
+    // uint8_t datae[Siz_e];
     uint8_t key[32];
 
     fread(datae, 1 , Siz_e, f1);
     fclose(f1);
+
+    datae = (uint8_t*)malloc(Siz_e);
 
     for (int i = 0; i < 32; i++)
       fscanf(f3, "%hhx", &key[i]);
@@ -114,11 +116,13 @@ int main (int argc, char **argv)
     if( f1 != NULL ) 
       Siz_d = filesize(f1);
 
-    uint8_t datad[Siz_d];
+    uint8_t *datad;
     uint8_t key[32];
 
     fread(datad, 1 , Siz_d, f1);
     fclose(f1);
+
+    datad = (uint8_t*)malloc(Siz_d);
 
     for (int i = 0; i < 32; i++)
       fscanf(f3, "%hhx", &key[i]);
