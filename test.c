@@ -12,7 +12,6 @@ int main (int argc, char **argv)
   uint32_t Siz_d = 0;
   uint32_t Siz_key = 0;
 
-  gen_crc_table();
   if (argc == 1) 
   {
     printf("-h help\n");
@@ -24,11 +23,8 @@ int main (int argc, char **argv)
     if (strcmp(argv[1], "-h") == 0) 
     {
       printf("Parameter order: key, input file location, output file location, encryption key location\n");
-      printf("-d decrypts");
-      printf("-e encrypts");
-      printf("-ed encrypt data");
-      printf("-dd decrypt data");
-      printf("-c comparison CRC32");
+      printf("-d decrypts\n");
+      printf("-e encrypts\n");
     }
     else 
     {
@@ -46,9 +42,6 @@ int main (int argc, char **argv)
       
     if( f1 != NULL )
       Siz_e = filesize(f1);
-  
-    if( f3 != NULL )
-      Siz_key = filesize(f3);
 
     if (f1 == NULL) 
     {
@@ -67,13 +60,13 @@ int main (int argc, char **argv)
     }
       
     uint8_t datae[Siz_e];
-    uint8_t key[Siz_key];
+    uint8_t key[32];
 
     fread(datae, 1 , Siz_e, f1);
     fclose(f1);
 
     for (int i = 0; i < 32; i++)
-      fscanf(f3, "%x", &key[i]);
+      fscanf(f3, "%hhx", &key[i]);
     fclose(f3);
 
     struct AES_ctx ctx;
@@ -116,23 +109,19 @@ int main (int argc, char **argv)
 
     uint16_t CRC32_after;
     printf("Please, enter encrypt data CRC32:\n");
-    scanf("%d", &CRC32_after);
+    scanf("%hd", &CRC32_after);
   
     if( f1 != NULL ) 
       Siz_d = filesize(f1);
 
-            
-    if( f3 != NULL ) 
-      Siz_key = filesize(f3);
-
     uint8_t datad[Siz_d];
-    uint8_t key[Siz_key];
+    uint8_t key[32];
 
     fread(datad, 1 , Siz_d, f1);
     fclose(f1);
 
     for (int i = 0; i < 32; i++)
-      fscanf(f3, "%x", &key[i]);
+      fscanf(f3, "%hhx", &key[i]);
     fclose(f3);
 
     uint16_t CRC32_before = update_crc(-1, datad, Siz_d);
