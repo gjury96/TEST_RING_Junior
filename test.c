@@ -62,10 +62,10 @@ int main (int argc, char **argv)
     // uint8_t datae[Siz_e];
     uint8_t key[32];
 
+    datae = (uint8_t*)malloc(Siz_e);
+
     fread(datae, 1 , Siz_e, f1);
     fclose(f1);
-
-    datae = (uint8_t*)malloc(Siz_e);
 
     for (int i = 0; i < 32; i++)
       fscanf(f3, "%hhx", &key[i]);
@@ -119,10 +119,10 @@ int main (int argc, char **argv)
     uint8_t *datad;
     uint8_t key[32];
 
+    datad = (uint8_t*)malloc(Siz_d);
+
     fread(datad, 1 , Siz_d, f1);
     fclose(f1);
-
-    datad = (uint8_t*)malloc(Siz_d);
 
     for (int i = 0; i < 32; i++)
       fscanf(f3, "%hhx", &key[i]);
